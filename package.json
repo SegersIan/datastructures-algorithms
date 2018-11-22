@@ -1,0 +1,22 @@
+{
+  "name": "data-structures",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SegersIan/datastructures-algorithms.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SegersIan/datastructures-algorithms/issues"
+  },
+  "homepage": "https://github.com/SegersIan/datastructures-algorithms#readme",
+  "dependencies": {
+    "tape": "^4.9.1"
+  }
+}
