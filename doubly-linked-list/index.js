@@ -1,3 +1,5 @@
+const R = require('ramda');
+
 function DoublyLinkedList(items = []) {
     this._keys = [];
     this._next = [];
@@ -23,20 +25,32 @@ function DoublyLinkedList(items = []) {
     }
 }
 
-DoublyLinkedList.prototype.search = function(query){
+DoublyLinkedList.prototype.search = function (query) {
 
-};
-
-DoublyLinkedList.prototype.insertAt = function (value, atIndex) {
-    
 };
 
 DoublyLinkedList.prototype.insertAtStart = function (value) {
-    this.insertAt(value, this._head);
+    const atIndex = this._head;
+    this._keys.push(value);
+    this._next.push(this._head);
+    this._prev.push(this._prev[atIndex]); // Should be null
+
+    const pointerToNewValue = this._keys.length - 1;
+
+    this._head = pointerToNewValue;
+    this._prev[atIndex] = pointerToNewValue;
 };
 
 DoublyLinkedList.prototype.insertAtEnd = function (value) {
-    this.insertAt(value, this._tail);
+    const atIndex = this._tail;
+    this._keys.push(value);
+    this._prev.push(this._tail);
+    this._next.push(this._next[atIndex]); // Should be null
+
+    const pointerToNewValue = this._keys.length - 1;
+
+    this._tail = pointerToNewValue;
+    this._next[atIndex] = pointerToNewValue;
 };
 
 
@@ -45,10 +59,20 @@ DoublyLinkedList.prototype.remove = function (atIndex) {
 };
 
 DoublyLinkedList.prototype.print = function () {
-    console.log(`Key : [${this._keys.join(', ')}]`);
-    console.log(`Next : [${this._next.join(', ')}]`);
-    console.log(`Prev : [${this._prev.join(', ')}]`);
+    const mapper = R.pipe(
+        x => x === null ? '/' : `${x}`,
+        x => x.padStart(8, ' ')
+    );
+    console.log(`Head : ${this._head}`);
+    console.log(`Tail : ${this._tail}`);
+    console.log(`Key  : [ ${this._keys.map(mapper).join(', ')} ]`);
+    console.log(`Next : [ ${this._next.map(mapper).join(', ')} ]`);
+    console.log(`Prev : [ ${this._prev.map(mapper).join(', ')} ]`);
 };
 
-const list = new DoublyLinkedList();
+const list = new DoublyLinkedList(['ian', 'ronen', 'maria', 'gerda']);
+list.print();
+list.insertAtStart('beer');
+list.print();
+list.insertAtEnd('cola');
 list.print();

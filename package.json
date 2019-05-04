@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/SegersIan/datastructures-algorithms#readme",
   "dependencies": {
+    "ramda": "^0.26.0",
     "tape": "^4.9.1"
   }
 }
